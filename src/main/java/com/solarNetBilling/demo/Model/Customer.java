@@ -53,6 +53,14 @@ public class Customer{
 	}
 	public Customer() {}
 	
+	@Override
+	public String toString() {
+		return "Customer [customerName=" + customerName + ", customerID=" + customerID + ", customerContactDetails="
+				+ customerContactDetails + ", customerType=" + customerType + ", address=" + address + "]";
+	}
+	
+	
+	
 	
 	
 }
