@@ -62,4 +62,55 @@ public class CustomerService{
 		customers.remove(index);
 	}
 	
+	public double getCustomerBillById(int custId) {
+		
+		 int prevReading = customers.stream()
+				        .filter(c->c.getCustomerID() == custId)
+				        .findFirst()
+				        .get().getPreviousReading();
+		 
+		 int currReading = customers.stream()
+			        .filter(c->c.getCustomerID() == custId)
+			        .findFirst()
+			        .get().getCurrentReading();
+		 
+		 return calcBill(prevReading, currReading) ;
+	
+	}
+
+	
+	
+	public static double calcBill(int prevReading, int currReading) {
+		
+		double bill=0;
+		
+		if(currReading>prevReading) {
+			int unitConsumed = currReading - prevReading;
+			int remiender = 0;
+			
+			for(int i=1;i<=7;i++) {
+				
+				if(i==1) {
+					bill = 25*518;
+					remiender = unitConsumed - 25;
+					}
+				if(i==2 && remiender>35) {
+					bill = bill + (remiender*569);
+				}
+				
+			}
+		}
+		else {
+			System.out.println("Error in meter reading");
+			return 0;
+		}
+		
+		System.out.println("bill is "+bill/100);
+		return bill/100;
+		
+	}
+	
 }
+
+
+

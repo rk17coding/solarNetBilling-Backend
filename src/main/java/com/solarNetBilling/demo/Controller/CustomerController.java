@@ -26,6 +26,11 @@ public class CustomerController{
 		return service.getCustomers();
 	}
 	
+	@GetMapping("/customerBill/{custId}")
+	public double getCustomerBillById(@PathVariable int custId) {
+		return service.getCustomerBillById(custId);
+	}
+	
 	@GetMapping("/customers/{custId}")
 	public Customer getCustomerById(@PathVariable int custId) {
 		return service.getCustomerById(custId);
