@@ -12,6 +12,25 @@ public class Customer{
 	private String customerContactDetails;
 	private String customerType;
 	private String address;
+	private int previousReading;
+	private int currentReading;
+	
+	
+	
+	
+	
+	public int getPreviousReading() {
+		return previousReading;
+	}
+	public void setPreviousReading(int previousReading) {
+		this.previousReading = previousReading;
+	}
+	public int getCurrentReading() {
+		return currentReading;
+	}
+	public void setCurrentReading(int currentReading) {
+		this.currentReading = currentReading;
+	}
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -43,24 +62,22 @@ public class Customer{
 		this.address = address;
 	}
 	public Customer(String customerName, int customerID, String customerContactDetails, String customerType,
-			String address) {
+			String address, int previousReading, int currentReading) {
 		super();
 		this.customerName = customerName;
 		this.customerID = customerID;
 		this.customerContactDetails = customerContactDetails;
 		this.customerType = customerType;
 		this.address = address;
+		this.previousReading = previousReading;
+		this.currentReading = currentReading;
 	}
 	public Customer() {}
-	
 	@Override
 	public String toString() {
 		return "Customer [customerName=" + customerName + ", customerID=" + customerID + ", customerContactDetails="
-				+ customerContactDetails + ", customerType=" + customerType + ", address=" + address + "]";
+				+ customerContactDetails + ", customerType=" + customerType + ", address=" + address
+				+ ", previousReading=" + previousReading + ", currentReading=" + currentReading + "]";
 	}
-	
-	
-	
-	
 	
 }
