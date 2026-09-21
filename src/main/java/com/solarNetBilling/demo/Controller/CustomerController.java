@@ -2,6 +2,8 @@ package com.solarNetBilling.demo.Controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.solarNetBilling.demo.Model.Customer;
 import com.solarNetBilling.demo.Service.CustomerServiceImpl;
 
+
+
 @RestController
 public class CustomerController{
+	
+	private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 	
 	@Autowired
 	CustomerServiceImpl service;
 	
 	@GetMapping("/customers")
 	public List<Customer> getCustomer() {
+		log.info("Inside getCustomer() ");
 		return service.getAllCustomers();
 	}
 	
@@ -33,6 +40,7 @@ public class CustomerController{
 	
 	@GetMapping("/customers/{custId}")
 	public Customer getCustomerById(@PathVariable String custId) {
+		log.info("Inside getCustomerById() ");
 		return service.getCustomerById(custId);
 	}
 	
