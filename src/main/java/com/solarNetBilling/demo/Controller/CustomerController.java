@@ -43,7 +43,8 @@ public class CustomerController{
 	
 	@PutMapping("/customers")
 	public void updateCustomer(@RequestBody Customer customer) {
-		service.updateCustomer(customer);
+		String result = service.updateCustomer(customer);
+		System.out.println("Inside customerontroller updateCustomer:result:" + result);
 	}
 	
 	@DeleteMapping("/customers/{custId}")

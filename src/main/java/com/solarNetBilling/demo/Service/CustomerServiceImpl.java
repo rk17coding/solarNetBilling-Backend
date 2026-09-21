@@ -31,6 +31,7 @@ public class CustomerServiceImpl {
 
     public String updateCustomer(Customer Customer) {
         int rows = CustomerDAO.updateCustomer(Customer);
+        System.out.println("Effected Updated Rows:"+rows);
         return rows > 0 ? "Customer updated successfully" : "Update failed";
     }
 

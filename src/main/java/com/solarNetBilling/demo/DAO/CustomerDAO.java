@@ -38,8 +38,8 @@ public class CustomerDAO {
 
     // UPDATE
     public int updateCustomer(Customer c) {
-        String sql = "UPDATE calculateBill SET customerName=?, customerContactDetails=?, customerEmailId=?, customerType=?, customerAddress=?  WHERE customerId=?";
-        return jdbcTemplate.update(sql, c.getCustomerName(), c.getCustomerContactDetails(), c.getCustomerEmailId(), c.getCustomerType(), c.getCustomerAddress(), c.getCustomerID() );
+        String sql = "UPDATE calculateBill SET customerName=?, customerContactDetails=?, customerEmailId=?, customerType=?, customerAddress=?, previousReading=?, currentReading=? WHERE customerId=?";
+        return jdbcTemplate.update(sql, c.getCustomerName(), c.getCustomerContactDetails(), c.getCustomerEmailId(), c.getCustomerType(), c.getCustomerAddress(), c.getPreviousReading(), c.getCurrentReading(), c.getCustomerID() );
     }
     
     //UPDATE Meter Reading
