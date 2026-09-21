@@ -1,0 +1,23 @@
+2026-09-21T18:40:37.001+05:30  INFO 7648 --- [demo] [restartedMain] c.solarNetBilling.demo.DemoApplication   : Starting DemoApplication using Java 21.0.3 with PID 7648 (C:\Users\rahul\git\solarNetBilling-Backend\target\classes started by rahul in C:\Users\rahul\git\solarNetBilling-Backend)
+2026-09-21T18:40:37.005+05:30  INFO 7648 --- [demo] [restartedMain] c.solarNetBilling.demo.DemoApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-09-21T18:40:37.068+05:30  INFO 7648 --- [demo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-21T18:40:37.068+05:30  INFO 7648 --- [demo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-21T18:40:38.024+05:30  INFO 7648 --- [demo] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-09-21T18:40:38.052+05:30  INFO 7648 --- [demo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-21T18:40:38.052+05:30  INFO 7648 --- [demo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-21T18:40:38.155+05:30  INFO 7648 --- [demo] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1082 ms
+2026-09-21T18:40:38.909+05:30  INFO 7648 --- [demo] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-09-21T18:40:38.915+05:30  INFO 7648 --- [demo] [restartedMain] c.solarNetBilling.demo.DemoApplication   : Started DemoApplication in 2.472 seconds (process running for 3.282)
+2026-09-21T18:40:49.594+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-21T18:40:49.595+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-21T18:40:49.596+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-09-21T18:40:49.638+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] c.s.demo.Controller.CustomerController   : Inside getCustomer() 
+2026-09-21T18:40:49.643+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-21T18:40:49.864+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@8cde010
+2026-09-21T18:40:49.867+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-21T18:42:50.054+05:30  INFO 7648 --- [demo] [http-nio-8080-exec-3] c.s.demo.Controller.CustomerController   : Inside getCustomerById() 
+2026-09-21T18:43:51.288+05:30  INFO 7648 --- [demo] [RMI TCP Connection(4)-192.168.1.92] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-09-21T18:43:51.291+05:30  INFO 7648 --- [demo] [RMI TCP Connection(4)-192.168.1.92] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-21T18:43:51.297+05:30  INFO 7648 --- [demo] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-09-21T18:43:51.303+05:30  INFO 7648 --- [demo] [RMI TCP Connection(4)-192.168.1.92] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-21T18:43:51.309+05:30  INFO 7648 --- [demo] [RMI TCP Connection(4)-192.168.1.92] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
