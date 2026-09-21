@@ -2,33 +2,34 @@ package com.solarNetBilling.demo.Model;
 
 import org.springframework.stereotype.Component;
 
-
-
 @Component
 public class Customer{
 	
+	private String customerID;
 	private String customerName;
-	private int customerID;
 	private String customerContactDetails;
+	private String customerEmailId;
 	private String customerType;
-	private String address;
-	private int previousReading;
-	private int currentReading;
+	private String customerAddress;
+	private double previousReading;
+	private double currentReading;
 	
-	
-	
-	
-	
-	public int getPreviousReading() {
+	public String getCustomerEmailId() {
+		return customerEmailId;
+	}
+	public void setCustomerEmailId(String customerEmailId) {
+		this.customerEmailId = customerEmailId;
+	}
+	public double getPreviousReading() {
 		return previousReading;
 	}
-	public void setPreviousReading(int previousReading) {
+	public void setPreviousReading(double previousReading) {
 		this.previousReading = previousReading;
 	}
-	public int getCurrentReading() {
+	public double getCurrentReading() {
 		return currentReading;
 	}
-	public void setCurrentReading(int currentReading) {
+	public void setCurrentReading(double currentReading) {
 		this.currentReading = currentReading;
 	}
 	public String getCustomerName() {
@@ -37,10 +38,10 @@ public class Customer{
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	public int getCustomerID() {
+	public String getCustomerID() {
 		return customerID;
 	}
-	public void setCustomerID(int customerID) {
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
 	public String getCustomerContactDetails() {
@@ -55,29 +56,35 @@ public class Customer{
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
 	}
-	public String getAddress() {
-		return address;
+	public String getCustomerAddress() {
+		return customerAddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
 	}
-	public Customer(String customerName, int customerID, String customerContactDetails, String customerType,
-			String address, int previousReading, int currentReading) {
-		super();
-		this.customerName = customerName;
-		this.customerID = customerID;
-		this.customerContactDetails = customerContactDetails;
-		this.customerType = customerType;
-		this.address = address;
-		this.previousReading = previousReading;
-		this.currentReading = currentReading;
-	}
+
+	
 	public Customer() {}
+	public Customer(String customerID, String customerName, String customerContactDetails, String customerEmailId,
+		String customerType, String customerAddress, double previousReading, double currentReading) {
+	super();
+	this.customerID = customerID;
+	this.customerName = customerName;
+	this.customerContactDetails = customerContactDetails;
+	this.customerEmailId = customerEmailId;
+	this.customerType = customerType;
+	this.customerAddress = customerAddress;
+	this.previousReading = previousReading;
+	this.currentReading = currentReading;
+}
 	@Override
 	public String toString() {
-		return "Customer [customerName=" + customerName + ", customerID=" + customerID + ", customerContactDetails="
-				+ customerContactDetails + ", customerType=" + customerType + ", address=" + address
-				+ ", previousReading=" + previousReading + ", currentReading=" + currentReading + "]";
+		return "Customer [customerID=" + customerID + ", customerName=" + customerName + ", customerContactDetails="
+				+ customerContactDetails + ", customerEmailId=" + customerEmailId + ", customerType=" + customerType
+				+ ", customerAddress=" + customerAddress + ", previousReading=" + previousReading + ", currentReading="
+				+ currentReading + "]";
 	}
+
+
 	
 }

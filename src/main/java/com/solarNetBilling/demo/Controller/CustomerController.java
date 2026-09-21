@@ -13,32 +13,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.solarNetBilling.demo.Model.Customer;
-import com.solarNetBilling.demo.Service.CustomerService;
+import com.solarNetBilling.demo.Service.CustomerServiceImpl;
 
 @RestController
 public class CustomerController{
 	
 	@Autowired
-	CustomerService service;
+	CustomerServiceImpl service;
 	
 	@GetMapping("/customers")
 	public List<Customer> getCustomer() {
-		return service.getCustomers();
+		return service.getAllCustomers();
 	}
 	
-	@GetMapping("/customerBill/{custId}")
-	public double getCustomerBillById(@PathVariable int custId) {
-		return service.getCustomerBillById(custId);
-	}
+//	@GetMapping("/customerBill/{custId}")
+//	public Customer getCustomerBillById(@PathVariable String custId) {
+//		return service.getCustomerById(custId);
+//	}
 	
 	@GetMapping("/customers/{custId}")
-	public Customer getCustomerById(@PathVariable int custId) {
+	public Customer getCustomerById(@PathVariable String custId) {
 		return service.getCustomerById(custId);
 	}
 	
 	@PostMapping("/customers")
 	public void addCustomer(@RequestBody Customer customer) {
-		service.addCustomer(customer);
+		service.createCustomer(customer);
 	}
 	
 	@PutMapping("/customers")
@@ -47,8 +47,10 @@ public class CustomerController{
 	}
 	
 	@DeleteMapping("/customers/{custId}")
-	public void deleteCustomerById(@PathVariable int custId) {
-		service.deleteCustomer(custId);
+	public void deleteCustomerById(@PathVariable long custId) {
+		System.out.println("Inside customer controller:"+custId);
+		String result = service.deleteCustomer(custId);
+		System.out.println("Inside customer controller:result:" + result);
 	}
 	
 }
