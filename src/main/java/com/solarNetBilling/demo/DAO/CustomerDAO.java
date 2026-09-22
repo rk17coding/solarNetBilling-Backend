@@ -19,32 +19,32 @@ public class CustomerDAO {
 
     // READ ALL
     public List<Customer> findAll() {
-        String sql = "SELECT * FROM calculateBill";
+        String sql = "SELECT * FROM customerinfo";
         return jdbcTemplate.query(sql, new CustomerRowMapper());
     }
 
     // READ ONE
     public Optional<Customer> findById(String id) {
-        String sql = "SELECT * FROM calculateBill WHERE customerId = ?";
+        String sql = "SELECT * FROM customerinfo WHERE customerId = ?";
         List<Customer> result = jdbcTemplate.query(sql, new CustomerRowMapper(), id);
         return result.stream().findFirst();
     }
 
     // CREATE
     public int save(Customer c) {
-        String sql = "INSERT INTO calculateBill (customerId, customerName, customerContactDetails, customerEmailId, customerType, customerAddress, previousReading, currentReading) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customerinfo (customerId, customerName, customerContactDetails, customerEmailId, customerType, customerAddress, previousReading, currentReading) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql, c.getCustomerID(), c.getCustomerName(), c.getCustomerContactDetails(), c.getCustomerEmailId(),c.getCustomerType(), c.getCustomerAddress(), c.getPreviousReading(), c.getCurrentReading());
     }
 
     // UPDATE
     public int updateCustomer(Customer c) {
-        String sql = "UPDATE calculateBill SET customerName=?, customerContactDetails=?, customerEmailId=?, customerType=?, customerAddress=?, previousReading=?, currentReading=? WHERE customerId=?";
+        String sql = "UPDATE customerinfo SET customerName=?, customerContactDetails=?, customerEmailId=?, customerType=?, customerAddress=?, previousReading=?, currentReading=? WHERE customerId=?";
         return jdbcTemplate.update(sql, c.getCustomerName(), c.getCustomerContactDetails(), c.getCustomerEmailId(), c.getCustomerType(), c.getCustomerAddress(), c.getPreviousReading(), c.getCurrentReading(), c.getCustomerID() );
     }
     
     //UPDATE Meter Reading
     public int updateMeterReading(Customer c) {
-        String sql = "UPDATE calculateBill SET currentReading=?, previousReading=?  WHERE customerId=?";
+        String sql = "UPDATE customerinfo SET currentReading=?, previousReading=?  WHERE customerId=?";
         return jdbcTemplate.update(sql, c.getCurrentReading(), c.getPreviousReading(), c.getCustomerID() );
     }
 
@@ -52,7 +52,7 @@ public class CustomerDAO {
     public int deleteById(long custId) {
     	System.out.println("Inside CustomerDAO"+ custId);
     	
-        String sql = "DELETE FROM calculateBill WHERE customerId = ?";
+        String sql = "DELETE FROM customerinfo WHERE customerId = ?";
         
         return jdbcTemplate.update(sql, custId);
         
