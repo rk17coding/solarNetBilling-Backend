@@ -28,7 +28,6 @@ public class CustomerController{
 		return service.getAllCustomers();
 	}
 	
-	
 	@GetMapping("/customers/{custId}")
 	public Customer getCustomerById(@PathVariable String custId) {
 		log.info("Inside getCustomerById() ");
