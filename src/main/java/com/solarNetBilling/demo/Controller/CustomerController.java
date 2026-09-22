@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.solarNetBilling.demo.Model.Customer;
 import com.solarNetBilling.demo.Service.CustomerServiceImpl;
 
-
-
 @RestController
 public class CustomerController{
 	
@@ -32,11 +30,6 @@ public class CustomerController{
 		log.info("Inside getCustomer() ");
 		return service.getAllCustomers();
 	}
-	
-//	@GetMapping("/customerBill/{custId}")
-//	public Customer getCustomerBillById(@PathVariable String custId) {
-//		return service.getCustomerById(custId);
-//	}
 	
 	@GetMapping("/customers/{custId}")
 	public Customer getCustomerById(@PathVariable String custId) {
