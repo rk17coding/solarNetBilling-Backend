@@ -16,33 +16,33 @@ public class CalculateBillService{
 	private static final Logger log = LoggerFactory.getLogger(GenerateBillController.class);
 	 
     // 1. Define a shared interface for any consumption slab type
-	public interface BillableSlab {int unit();int energyCharge();}
+	private interface BillableSlab {int unit();int energyCharge();}
 
     // 2. Make records implement the interface
-    public record DomesticMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {} 
-    public record CommercialMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {} 
-    public record ShortTermMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record MunicipalMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record SchoolMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record IndustrialMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record CollegeMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record StreetLightMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record OfficeMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
-    public record EVChargingStationMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record DomesticMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {} 
+	private record CommercialMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {} 
+	private record ShortTermMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record MunicipalMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record SchoolMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record IndustrialMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record CollegeMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record StreetLightMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record OfficeMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
+	private record EVChargingStationMonthlyConsumption(int unit, int energyCharge) implements BillableSlab {}
 
     // Slabs setup using LinkedHashMap to guarantee sequence order (1, 2, 3...)  // check for static
-    static LinkedHashMap<Integer, DomesticMonthlyConsumption> chargeSlabForDomestic = new LinkedHashMap<>(); 
-    static LinkedHashMap<Integer, CommercialMonthlyConsumption> chargeSlabForCommercial = new LinkedHashMap<>(); 
-    static LinkedHashMap<Integer, ShortTermMonthlyConsumption> chargeSlabForShortTerm = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, MunicipalMonthlyConsumption> chargeSlabForMunicipal = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, SchoolMonthlyConsumption> chargeSlabForSchool = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, IndustrialMonthlyConsumption> chargeSlabForIndustrial = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, CollegeMonthlyConsumption> chargeSlabForCollege = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, StreetLightMonthlyConsumption> chargeSlabForStreet = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, OfficeMonthlyConsumption> chargeSlabForOffice = new LinkedHashMap<>();
-    static LinkedHashMap<Integer, EVChargingStationMonthlyConsumption> chargeSlabForEVChargingStation = new LinkedHashMap<>();
+     LinkedHashMap<Integer, DomesticMonthlyConsumption> chargeSlabForDomestic = new LinkedHashMap<>(); 
+     LinkedHashMap<Integer, CommercialMonthlyConsumption> chargeSlabForCommercial = new LinkedHashMap<>(); 
+     LinkedHashMap<Integer, ShortTermMonthlyConsumption> chargeSlabForShortTerm = new LinkedHashMap<>();
+     LinkedHashMap<Integer, MunicipalMonthlyConsumption> chargeSlabForMunicipal = new LinkedHashMap<>();
+     LinkedHashMap<Integer, SchoolMonthlyConsumption> chargeSlabForSchool = new LinkedHashMap<>();
+     LinkedHashMap<Integer, IndustrialMonthlyConsumption> chargeSlabForIndustrial = new LinkedHashMap<>();
+     LinkedHashMap<Integer, CollegeMonthlyConsumption> chargeSlabForCollege = new LinkedHashMap<>();
+     LinkedHashMap<Integer, StreetLightMonthlyConsumption> chargeSlabForStreet = new LinkedHashMap<>();
+     LinkedHashMap<Integer, OfficeMonthlyConsumption> chargeSlabForOffice = new LinkedHashMap<>();
+     LinkedHashMap<Integer, EVChargingStationMonthlyConsumption> chargeSlabForEVChargingStation = new LinkedHashMap<>();
 
-    static {
+     {
         //Domestic Charge Slab
         chargeSlabForDomestic.put(1, new DomesticMonthlyConsumption(25,518));
         chargeSlabForDomestic.put(2, new DomesticMonthlyConsumption(35,569));
@@ -94,7 +94,7 @@ public class CalculateBillService{
      * 3. THE GENERIC METHOD
      * Uses <? extends BillableSlab> to accept a map of any slab type.
      */
-    public double billingLogic(double unitConsumed, Map<Integer, ? extends BillableSlab> chargeSlab) {
+     private double billingLogic(double unitConsumed, Map<Integer, ? extends BillableSlab> chargeSlab) {
         double billAmount = 0; 
         double remainingUnits = unitConsumed; 
         int slab = 0, unit = 0, energyCharge = 0, count = 1; 

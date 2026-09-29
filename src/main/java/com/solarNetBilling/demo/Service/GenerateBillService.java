@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.solarNetBilling.demo.Controller.GenerateBillController;
+import com.solarNetBilling.demo.DAO.GenerateBillDAO;
 import com.solarNetBilling.demo.Model.GenerateBill;
 
 @Service
@@ -20,6 +21,9 @@ public class GenerateBillService {
 	 
 	@Autowired
 	GenerateBillServiceImpl generateBillServiceImpl;
+	
+	@Autowired
+	GenerateBillDAO generateBillDAO;
 	
 	List<GenerateBill> generateBill =new ArrayList<>(Arrays.asList(
 			new GenerateBill(7301313326L, "Domestic", 2751.66, 2934.12, 182.46, 1001L, 0.0, LocalDate.of(2026, 9, 22)),
@@ -39,33 +43,80 @@ public class GenerateBillService {
 		    new GenerateBill(1384976654L, "Municipal or Non-Municipal", 27461.01, 29581.1, 2120.09, 1006L, 0.0, LocalDate.of(2026, 9, 22)),
 		    new GenerateBill(4917382661L, "Commercial", 2408.95, 3289.55, 880.60, 1016L, 0.0, LocalDate.of(2026, 9, 22)))
 			); 	
+	
+	List<GenerateBill> newBillRecord = new ArrayList<GenerateBill>();
 
 	public List<GenerateBill> generateBillInfo() {
 		return generateBill;
 	}
 	
-	@Deprecated
-	public List<GenerateBill> generateBillNumber(){
-		
-		for(GenerateBill custbill : generateBill) {
-			custbill.setBillNo(generateBillServiceImpl.generateBillNo());
-		}	
-		return generateBill;
+//	@Deprecated
+//	public List<GenerateBill> generateBillNumber(){
+//		
+//		for(GenerateBill custbill : generateBill) {
+//			custbill.setBillNo(generateBillServiceImpl.generateBillNo());
+//		}	
+//		return generateBill;
+//	}
+	
+	public List<GenerateBill> generateCustomerRecord(){
+		newBillRecord = generateBillDAO.findAll();
+		return newBillRecord;
 	}
+	
 
-	public List<GenerateBill> generateAllCustBill() {
-		for(GenerateBill custbill : generateBill) {
+	public int generateAllCustBill() {
+		int count =0;
+		List<GenerateBill> generateAllBill = new ArrayList<GenerateBill>();
+		generateAllBill = generateBillDAO.findAll();
+		for(GenerateBill custbill : generateAllBill) {
 			
 			GenerateBill temp = generateBillServiceImpl.generateBillAmount(custbill);
 			custbill.setUnitConsumed(temp.getUnitConsumed());
 			custbill.setBillNo(temp.getBillNo());
 			custbill.setBillAmount(temp.getBillAmount());
 			custbill.setBillDate(temp.getBillDate());
-			
-			
 			log.info("Inside generateAllCustBill");
+			int k = generateBillDAO.update(custbill);
+			if(k==1)count++;
+			
 		}
-		return generateBill;
+		return count;
 	}
+
+	public int createGenerateBillRecord() {
+		int count=0;
+		if(newBillRecord.size()>=0) {
+		for(GenerateBill g : newBillRecord ) {
+			int k = generateBillDAO.create(g);
+			log.info("value of K : "+k);
+			if(k == 1)count++;
+		}
+		}
+		else {
+		log.info("Record is Null");
+		}
+		return count;
+		
+	}
+
+	public GenerateBill generateBillById(long custId) {
+        return generateBillDAO.findById(custId)
+                .orElseThrow(() -> new RuntimeException("Customer not found: " + custId));
+	}
+
+	public String updateBill(GenerateBill generateBill) {
+		int rows = generateBillDAO.updateBill(generateBill);
+        System.out.println("Effected Updated Rows:"+rows);
+        return rows > 0 ? "Bill updated successfully" : "Update failed";
+    }
+
+	public String deleteBill(long custId) {
+		log.info("Inside GenerateBillService.Deletebill:" + custId);
+		int rows = generateBillDAO.deleteById(custId);
+		log.info("Effected Rows:" + rows);
+		return rows > 0 ? "Customer deleted successfully" : "Delete failed";
+	}
+	
 	
 }

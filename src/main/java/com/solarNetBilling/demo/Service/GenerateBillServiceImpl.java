@@ -49,7 +49,7 @@ public class GenerateBillServiceImpl {
     
 
     //Bill No Generator Method
-    public synchronized long generateBillNo() {
+    private synchronized long generateBillNo() {
         LocalDate today = LocalDate.now();
 
         // Reset sequence at start of each new day
@@ -79,7 +79,7 @@ public class GenerateBillServiceImpl {
     }
     
     
-    public double calculatebillAmount(char category, double unitConsumed) {
+    private double calculatebillAmount(char category, double unitConsumed) {
     	
     	double result=0;
     	
