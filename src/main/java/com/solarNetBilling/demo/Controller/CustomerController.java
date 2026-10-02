@@ -4,6 +4,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.solarNetBilling.demo.Model.Customer;
 import com.solarNetBilling.demo.Service.CustomerServiceImpl;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 public class CustomerController{
@@ -50,6 +53,12 @@ public class CustomerController{
 		System.out.println("Inside customer controller:"+custId);
 		String result = service.deleteCustomer(custId);
 		System.out.println("Inside customer controller:result:" + result);
+	}
+	
+	@GetMapping("/csrf-token")
+	public CsrfToken getCsrfToken(HttpServletRequest request) {
+		
+		return (CsrfToken) request.getAttribute("_csrf");
 	}
 	
 }
